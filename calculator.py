@@ -11,12 +11,12 @@ def main():
     om = pd.read_excel(filename, sheet_name='Other Measures', header=None)
     ms = pd.read_excel(filename, sheet_name='Market Share', header=None)
 
-    demand = pd.read_excel(filename, sheet_name='Price', header=None).iloc[5:8, week+1].to_numpy()#Price 시트의 수요량량
+    demand = pd.read_excel(filename, sheet_name='Price', header=None).iloc[5:8, week+1].to_numpy()#Price 시트의 수요량
 
     adms = ms.iloc[69:92, week+2].to_numpy()#Market Share시트의 Adjusted market Shares
     price = ms.iloc[6:29, week+2].to_numpy()#Market Share시트의 각 모듈 Price
 
-    apple_satisf = om.iloc[59:67, week+1].to_numpy()#Other Measures시트의 apple 충족률         충족률 = 판매량/수요량량
+    apple_satisf = om.iloc[59:67, week+1].to_numpy()#Other Measures시트의 apple 충족률         충족률 = 판매량/수요량
     sony_satisf = om.iloc[70:78, week+1].to_numpy()#Other Measures시트의 sony 충족률
     o_c_s = om.iloc[48:56, week+1].to_numpy()#Other Measures시트의 판매/생산 비
     comprod = om.iloc[37:45, week+1].to_numpy()#Other Measures시트의 component주문량/제품생산량 비
@@ -34,6 +34,13 @@ def main():
 
         components = capacity*comprod[i]
 
-        print("{0}팀의\napple 모듈 판매량:{1}, sony 모듈 판매량:{2}, 최대 생산량:{3}\n최대 생산량을 바탕으로 한 component 주문량:{4}\nRevenue:${5}\n".format(TEAM[i], apple_sales, sony_sales, capacity, components,revenue))
+        print("{0}팀의\napple 모듈 판매량:{1}, sony 모듈 판매량:{2}, 최대 생산량:{3}\n최대 생산량을 바탕으로 한 component 주문량:{4}\nRevenue:${5}\n"
+        .format(TEAM[i],
+                apple_sales, 
+                sony_sales, 
+                capacity, 
+                components, 
+                revenue)
+                )
     
 main()
